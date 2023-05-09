@@ -1,0 +1,42 @@
+<app-main-navbar></app-main-navbar>
+
+<div class="content-box mx-auto p-3">
+    
+    
+    <h2 class="page-title">Demandes de permis</h2>
+    
+    <div *ngIf="permitsList && permitsList.length > 0">
+        Vous trouverez ici la liste de vos demandes récentes.
+    </div>
+    
+    <div *ngIf="permitsList && permitsList.length == 0">
+        Vous n'avez pas de demandes récentes.
+    </div>   
+    
+    <button type="button" (click)="onNewPermit()" class="btn btn-primary mt-5 mb-4">
+        <i class="bi bi-plus-circle-fill me-1"></i>
+        Nouvelle demande
+    </button>
+    
+    <ul class="list-group mt-4" *ngIf="permitsList && permitsList.length > 0">
+
+        <app-list-item *ngFor="let permit of permitsList; index as i;"
+        [permit] = "permit"
+        (editEvent)="onEditPermit(permit._id)"
+        (deleteEvent)="onDeletePermit(permit._id, i)"
+        (viewEvent)="onViewPermit(permit._id)"
+        > </app-list-item>
+    </ul>
+
+    <div *ngIf="!permitsList && showPlaceholder" class="placeholder-glow">
+        <p>Chargement, veuillez attendre...</p>
+        <p  *ngFor="let number of [0,1,2,3,4]" class="my-1">
+            <span class="placeholder col-3 me-2"></span>
+            <span class="placeholder col-3 me-2"></span>
+            <span class="placeholder col-3 me-2"></span>           
+        </p>
+    
+    </div>
+   
+
+</div>

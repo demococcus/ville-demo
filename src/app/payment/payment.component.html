@@ -1,0 +1,59 @@
+<app-main-navbar></app-main-navbar>
+
+
+<div class="content-box mx-auto col-sm-6">
+    <h2 class="page-title">Paiement</h2>
+    
+    <form [formGroup]="formGroup">
+    
+        <div class="container mb-3 ">
+    
+            <div class="row">
+                <div class="px-2 px-sm-0">
+                    <app-input label="Nom inscrit sur la carte" placeholder="" mask="" [control]="formGroup.get('name')"></app-input>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-sm-8 ps-2 ps-sm-0">
+                    <app-input label="Numéro de carte" placeholder="" mask="0000  0000  0000  0000" [control]="formGroup.get('cardNumber')"></app-input>
+                </div>
+                <div class="col-sm-4 pe-2 pe-sm-0">
+                    <app-select 
+                        label="Type" 
+                        placeholder="" 
+                        [control]="formGroup.get('cardType')"
+                        [optionsList]="cardTypes"
+                    ></app-select>
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-sm-6 ps-2 ps-sm-0">
+                    <app-input label="Expiration" placeholder="MM/DD" mask="00/00" [control]="formGroup.get('expiration')"></app-input>
+                </div>
+                <div class="col-sm-6 pe-2 pe-sm-0">
+                    <app-input label="CVC" placeholder="" mask="000" [control]="formGroup.get('CVC')"></app-input>
+                </div>
+            </div>
+    
+          </div>
+    
+    </form>
+    
+    
+    <hr class="mt-5 mb-4">
+    
+    <div class="">   
+        <button type="button" class="btn btn-outline-primary me-3" >Précédent</button>
+        <button type="button" class="btn btn-primary me-3" [disabled]="formGroup.invalid">Suivant</button>
+    </div>
+    
+    
+    <div class="mt-5">
+        <div>Form contents: {{ formGroup.value | json }}</div>
+    <div>Form is valid: {{ formGroup.valid  }}</div>
+    </div>
+</div>
+
+

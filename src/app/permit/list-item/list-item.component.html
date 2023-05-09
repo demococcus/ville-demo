@@ -1,0 +1,35 @@
+<li 
+    *ngIf="permit" 
+    class= "list-group-item d-flex justify-content-between align-items-center flush-border"
+    >
+    <!-- <span >Demande de permis #{{ permit._id }}</span> -->
+    <span >Demande de permis</span>
+    <span style="width: 100px">{{ permit.dateCreated | dateM }}</span>
+    <span style="width: 100px">{{ permit.status | status }}</span>
+    <div style="width: 80px">
+
+        <ng-container *ngIf="permit.status == 1">                
+            <button 
+                type="button" 
+                class="btn btn-info btn-sm me-3" title="Modifier"
+                (click)="onEditClicked()"
+            >
+            <i class="bi bi-pencil"></i>
+            </button>
+
+            <app-confirm-delete (confirmed)="onDeleteClicked()">
+                Voulez-vous supprimer la demande du {{permit.dateCreated | dateM }} ?
+            </app-confirm-delete>
+        </ng-container>
+
+        <button 
+            *ngIf="permit.status > 1"
+            type="button" 
+            class="btn btn-success btn-sm me-3" title="Consulter"
+            (click)="onViewClicked()"
+            >Consulter
+        </button>
+
+    </div>
+
+</li>

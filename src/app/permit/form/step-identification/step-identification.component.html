@@ -1,0 +1,81 @@
+<h2 class="page-title">Identification du demandeur</h2>
+
+<h4 class="section-title">Compagnie</h4>
+
+<form [formGroup]="companyGroup">
+    <div class="mb-3">
+        <app-input label="Nom de la compagnie" placeholder="" [control]="companyGroup.get('companyName')"></app-input>  
+        <app-radio 
+            label="Est-ce une compagnie privée ?" 
+            placeholder="" 
+            [control]="companyGroup.get('isPrivateCompany')"
+            [optionsList]="ownershipOptions"
+        ></app-radio>
+        <div *ngIf="companyGroup.get('isPrivateCompany').value == true" class="col-sm-8">
+            <app-input 
+                label="Numéro de certificat (ex: RT-12345678)"
+                placeholder="" mask="SS-00000000" 
+                [control]="companyGroup.get('certificateNumber')"
+            ></app-input>
+        </div>
+    </div>
+
+</form>
+
+<h4 class="section-title">Personne à contacter</h4>
+
+<form [formGroup]="contactGroup">
+
+
+    <div class="container mb-3">
+
+        <div class="row">
+          <div class="col-sm-6 ps-2 ps-sm-0">
+            <app-input label="Prénom" placeholder="" [control]="contactGroup.get('firstName')"></app-input>
+          </div>
+          <div class="col-sm-6 pe-2 pe-sm-0">
+            <app-input label="Nom" placeholder="" [control]="contactGroup.get('lastName')"></app-input>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-7 ps-2 ps-sm-0">
+                <app-input label="Téléphone" placeholder="" mask="(000) 000-0000" [control]="contactGroup.get('phone')"></app-input>
+            </div>
+            <div class="col-sm-5 pe-2 pe-sm-0">
+                <app-input label="Poste" placeholder="" mask="00999999" [control]="contactGroup.get('phoneExt')"></app-input>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="px-2 px-sm-0">
+                <app-input label="Courriel" placeholder="" mask="" [control]="contactGroup.get('email')"></app-input>
+            </div>
+          </div>
+
+      </div>
+
+</form>
+
+<hr class="mt-4 mb-4">
+
+<div class="mb-4">   
+    <button type="button" class="btn btn-primary me-3" [disabled]="companyGroup.invalid || contactGroup.invalid" (click)="onNextClicked()">Suivant</button>
+</div>
+
+
+<!-- <div class="mt-5">
+    <div>ownerGroup form contents: {{ companyGroup.value | json }}</div>
+    <div>ownerGroup form is valid: {{ companyGroup.valid  }}</div>
+    <div>contactGroup form contents: {{ contactGroup.value | json }}</div>
+    <div>contactGroup form is valid: {{ contactGroup.valid  }}</div>
+    <div>Errors phone {{ contactGroup.controls.phone.errors | json }}</div>
+</div> -->
+
+<!-- <hr class="mt-5 mb-4">
+
+<div class="mt-5">
+    <div>permitForm form contents: {{ permitForm.value | json }}</div>
+    <div>permitForm form is valid: {{ permitForm.valid  }}</div>
+
+</div> -->

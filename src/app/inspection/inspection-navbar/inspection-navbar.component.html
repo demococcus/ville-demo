@@ -1,0 +1,31 @@
+<nav class="navbar bg-light navbar-light">
+    <div class="container-fluid">
+      
+      <a 
+        class="navbar-brand" 
+        routerLink="">
+        <span class="d-none d-sm-inline">Ville <span class="red-demo">Démo</span></span>
+        <span class="d-inline d-sm-none">V<span class="red-demo">D</span></span>
+      </a>
+      
+      <div class="d-flex d-flex  d-none d-sm-flex" style="height: 30px">
+        <div class="vr me-3" style="width: 0.5px"></div>
+      </div>
+  
+      <!-- aligned to the left -->
+      <div
+        class="navbar-nav me-auto d-none d-sm-flex">      
+        <h6 class="my-0 font-weight-bold">Rapport d'inspection : {{ [networkName[networkType]] }} </h6>  
+      </div>          
+  
+        
+      <button class="btn btn-outline-dark btn-login d-flex" type="button" routerLink="../">
+        <span class="me-2">Retour à la liste</span>
+        <i class="bi bi-box-arrow-right"></i>
+      </button>
+  
+  
+    </div>
+  </nav>  
+    
+  <hr style="height:0.1px; width:100%; color:gray; margin: 0;">

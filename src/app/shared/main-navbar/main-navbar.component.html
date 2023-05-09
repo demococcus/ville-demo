@@ -1,0 +1,43 @@
+<app-main-menu *ngIf="showMenu" (menuLinkClicked)="closeMenu()"></app-main-menu>
+
+<nav class="navbar bg-light navbar-light">
+    <div class="container-fluid content-box">
+      
+      <a 
+        class="navbar-brand" 
+        routerLink="" 
+        (click)="closeMenu()">
+        <span class="d-none d-sm-inline">Ville <span class="red-demo">Démo</span></span>
+        <span class="d-inline d-sm-none">V<span class="red-demo">D</span></span>
+      </a>
+
+      <div class="navbar-nav">  
+
+        <a 
+          class="btn btn-outline-dark" 
+          type="button" 
+          [ngClass]="{'btn-outline-dark': !showMenu, 'btn-dark': showMenu }"
+          (click)="toggleMenu()">
+          <i class="bi bi-list"></i>
+          <span class="ms-2">Menu</span>       
+        </a>
+
+        <!-- <button *ngIf="showMenu" type="button" class="btn btn-dark"  (click)="toggleMenu()">
+          <i class="bi bi-list me-1"></i>Menu
+        </button> -->
+
+      </div>        
+  
+        
+      <button class="btn btn-outline-dark btn-login d-flex" type="button" (click)="closeMenu()">
+        <i class="bi-person mb-0" ></i>
+        <span class="d-none d-sm-flex ms-2">
+          Mon compte      
+        </span>
+      </button>
+
+  
+    </div>
+  </nav>  
+    
+  <hr style="height:0.1px; width:100%; color:gray; margin-top: 0;">

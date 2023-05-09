@@ -1,0 +1,16 @@
+<h2 class="page-title">Localisation</h2>
+
+
+  <app-map></app-map>
+
+  <hr class="mt-4 mb-4">
+
+<div class="mb-4">   
+    <button type="button" class="btn btn-outline-primary me-3" (click)="onPrevClicked()">Précédent</button>
+    <button 
+      type="button" 
+      class="btn btn-primary me-3" 
+      [disabled]="!this.permitForm.get('geometry.geom').valid" 
+      (click)="onNextClicked()"
+      >Suivant</button>
+</div>

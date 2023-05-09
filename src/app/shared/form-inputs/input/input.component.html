@@ -1,0 +1,50 @@
+<div class="field mb-3">
+
+    <label *ngIf="label" class="form-label">{{ label }}</label>
+    <input 
+        class="form-control "
+        [formControl]="control"
+        [ngClass]="{'is-invalid': showErrors(), 'is-valid': showValid()}"
+        [placeholder]="placeholder"
+        [mask]="mask"
+        >
+    
+    <ng-container *ngIf="showErrors()">
+        <div 
+        class="invalid-feedback"
+        *ngIf="control.errors.required">
+            La valeur est requise.
+        </div>
+
+        <div 
+        class="invalid-feedback"
+        *ngIf="control.errors.minlength">
+            La valeur doit avoir au moins
+            {{ control.errors.minlength.requiredLength }} 
+            caractères.
+        </div>
+
+        <div 
+        class="invalid-feedback"
+        *ngIf="control.errors.maxlength">
+            La valeur ne doit pas dépasser
+            {{ control.errors.maxlength.requiredLength }} 
+            caractères.
+        </div>
+
+        <div 
+        class="invalid-feedback"
+        *ngIf="control.errors.fixedLength">
+            La valeur doit avoir
+            {{ control.errors.fixedLength.requiredLength }} 
+            caractères.
+        </div>
+
+        <div 
+        class="invalid-feedback"
+        *ngIf="control.errors.pattern">
+            Format invalide.
+        </div>
+    </ng-container>
+
+</div>

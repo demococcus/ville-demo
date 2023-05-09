@@ -1,0 +1,43 @@
+<app-permit-navbar 
+  [editMode]="this.permitFormGroup.value.status == 1"
+  [sinceLastSaved]="sinceLastSaved"
+></app-permit-navbar>
+
+
+  <div class="container text-left p-3 ">
+
+    <div class="row content-box mx-auto">
+      <!-- column for the form steps -->
+      <div class="col md-7">        
+
+        <router-outlet></router-outlet>
+
+        <app-error-msg></app-error-msg>
+
+      </div>
+
+      <!-- column for the reference card -->
+      <div class="col-md-4 ms-md-5 mt-3">
+        <app-reference-card [title]="'À lire'"></app-reference-card>
+      </div>
+    </div>
+
+
+    <!-- tools for DEV mode only -->
+
+    <div *ngIf="devMode" class="mt-3">
+      
+      <button type="button" class="btn btn-outline-danger" (click)="throwTestError()">throwTestError</button>
+      
+      <div  class="row my-5">
+        <div>permitForm form is valid: {{ permitFormGroup.valid  }}</div>
+        <div>permitForm form contents: {{ permitFormGroup.value | json }}</div>      
+      </div>
+      
+    </div>
+
+  </div>
+
+
+  
+

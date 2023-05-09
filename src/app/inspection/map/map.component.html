@@ -1,0 +1,58 @@
+<div class="map-wrap">
+  <div class="map" #map></div>
+</div>
+
+<div *ngIf="networkType == 1" class="btn-group my-float" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked
+  (click)="onToggleAqueduct(0)">
+  <label class="btn btn-outline-primary" for="btnradio1">Position</label>
+
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+  (click)="onToggleAqueduct(1)">
+  <label class="btn btn-outline-primary" for="btnradio2">Pression</label>
+
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+  (click)="onToggleAqueduct(2)">
+  <label class="btn btn-outline-primary" for="btnradio3">État</label>
+</div>
+
+<div *ngIf="networkType == 2" class="btn-group my-float" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked
+  (click)="onToggleSewer(0)">
+  <label class="btn btn-outline-success" for="btnradio1">Année</label>
+
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+  (click)="onToggleSewer(1)">
+  <label class="btn btn-outline-success" for="btnradio2">Matériaux</label>
+
+</div>
+
+
+<div #fhPopupContainer class="popup-container">
+  <div *ngIf="fhProp">
+    <p class="my-0"><strong>ID</strong> {{ fhProp.id }}</p>
+    <p class="my-0"><strong>Modele</strong> {{ fhProp.model }}</p>
+    <p class="my-0"><strong>Année</strong> {{ fhProp.year }}</p>
+    <p *ngIf=" fhProp.pressure" class="my-0"><strong>Pression</strong> {{ fhProp.pressure }} psi</p>
+    <p class="my-0 fw-semibold"
+      [ngClass]="{'text-danger': fhProp.repair, 'text-success': !fhProp.repair}"
+    > {{ fhProp.repair | repair}}</p>
+
+    
+  </div>
+</div>
+
+
+<div #sewerPopupContainer class="popup-container">
+  <div *ngIf="spProp">
+    <p class="my-0"><strong>ID</strong> {{ spProp.id }}</p>
+    <p class="my-0"><strong>Matériel</strong> {{ spProp.material }}</p>
+    <p class="my-0"><strong>Année</strong> {{ spProp.year }}</p>
+  </div>
+</div>
+
+
+
+
+
+

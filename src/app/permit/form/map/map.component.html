@@ -1,0 +1,22 @@
+
+
+<div class="map-wrap border border-secondary border-2 mb-3">
+  <div class="map" #map></div>
+</div>
+
+<div *ngIf="permitForm.get('geometry.geom').value; else drawPrompt" 
+  class="alert alert-success" role="alert">
+  <i class="bi bi-check-circle-fill me-2"></i> Zone d'occupation
+</div>
+
+
+<ng-template #drawPrompt>
+  <div     
+    class="alert alert-warning" role="alert">
+    <i class="bi bi-exclamation-circle-fill me-2"></i> Veuillez dessiner la zone d'occupation sur la carte
+  </div>
+</ng-template>
+
+<!-- <div class="mt-5">
+  <div>Form contents: {{ permitForm.value | json }}</div>
+</div> -->

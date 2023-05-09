@@ -1,0 +1,27 @@
+<div class="field">
+
+    <label *ngIf="label" class="form-label">{{ label }}</label>
+
+    <div class="form-check ">
+        <input 
+            class="form-check-input" 
+            type="checkbox" 
+            [formControl]="control"
+            [ngClass]="{'is-invalid': showErrors(), 'is-valid': showValid()}"                
+        >
+        <label class="form-check-label">  {{ option }}</label> 
+
+        <ng-container *ngIf="showErrors()">
+            <div 
+            class="invalid-feedback"
+            *ngIf="control.errors.required">
+                Veuillez indiquer votre choix.
+            </div>
+    
+        </ng-container>
+
+
+    </div>        
+
+
+</div>

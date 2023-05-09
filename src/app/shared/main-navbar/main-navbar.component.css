@@ -1,0 +1,13 @@
+.btn {  
+    text-decoration: none;
+    /* background-color: #fff; */
+    border-color: transparent
+}
+
+.btn-dark:hover {
+    background-color: black;
+  }
+
+span.red-demo {
+    color: red;
+}

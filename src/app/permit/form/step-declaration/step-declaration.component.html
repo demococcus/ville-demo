@@ -1,0 +1,72 @@
+<h2 class="page-title">Validation</h2>
+
+<p class="my-1">Numéro de la demande : {{ getFieldValue('permitId')}}</p>
+<p class="my-1">Date de création : {{ getFieldValue('dateCreated') | dateM }}</p>
+
+<hr class="mt-4 mb-4">
+
+
+<h4 class="page-title">Analyse</h4>
+
+<div class="card mb-4" style="width: 25rem;">
+  <div class="card-body">
+    <h5 class="card-title">Montant de {{ getFieldValue('geometry.insideElements') * 10 }} $ CAD</h5>
+    <!-- <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6> -->
+    <p class="card-text">
+      Ce montant est estimé en fonction de la zone d'impacte (le polygone dessiné à l'étape précédente).
+      Ces frais ne sont pas remboursables.
+    </p>
+  </div>
+</div>
+
+
+
+
+<h4 class="page-title">Vos renseignements</h4>
+
+
+<p class="my-1">Nom de la compagnie : {{ getFieldValue('company.companyName') }}</p> 
+<p class="my-1">Est-ce une compagnie privée : {{ getFieldValue('company.isPrivateCompany') | booleanToText }}</p> 
+
+<p class="my-1" *ngIf="getFieldValue('company.certificateNumber')">
+  Numéro de certificate : {{ getFieldValue('company.certificateNumber')  | certificate }}</p> 
+
+<p class="my-1" *ngIf="getFieldValue('contact.firstName')">"
+  Prénom : {{ getFieldValue('contact.firstName') }}</p> 
+
+<p class="my-1" *ngIf="getFieldValue('contact.lastName')">
+  Nom : {{ getFieldValue('contact.lastName') }}</p> 
+
+<p class="my-1" *ngIf="getFieldValue('contact.phone')">
+  Téléphone : {{ getFieldValue('contact.phone') | phone }}</p> 
+
+<p class="my-1" *ngIf="getFieldValue('contact.email')">"
+  Courriel : {{ getFieldValue('contact.email') }}</p> 
+  
+<p class="my-1">Date de début : {{ getFieldValue('duration.periodStart') | dateM }}</p> 
+<p class="my-1">Date de fin : {{ getFieldValue('duration.periodEnd') | dateM }}</p> 
+
+
+<h4 class="page-title mt-4">Déclaration</h4>
+
+<form [formGroup]="declarationGroup">
+    <div class="mb-3">
+        <ng-container *ngFor="let d of declarationsList; let i = index">
+          <app-checkbox label="" [control]="declarationGroup.get(d.fieldName)" [option]="d.label"></app-checkbox>
+        </ng-container>
+    </div>
+</form>
+
+  <hr class="mt-5 mb-4">
+
+<div class="mb-4">   
+    <button type="button" class="btn btn-outline-primary me-3" (click)="onPrevClicked()">Précédent</button>
+    <button type="button" class="btn btn-primary me-3" [disabled]="permitForm.invalid" (click)="onSubmitClicked()">Soumettre</button>
+</div>
+
+
+<!-- <div class="mt-5">
+    <div>Form contents: {{ declarationGroup.value | json }}</div>
+    <div>declarationGroup is valid: {{ declarationGroup.valid  }}</div>
+    <div>Errors around acceptA {{ declarationGroup.controls.acceptA.errors | json }}</div>
+</div> -->

@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+
+a.link-primary:link, a.link-primary:visited {
+    /* color: seagreen; */
+    text-decoration: none;
+    }
+    
+  a.link-primary:hover, a.link-primary:active {
+    text-decoration: underline;
+  }
+  
+  .page-title, .section-title {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+  
+
+.content-box {
+    max-width: 900px;
+    /* background-color: aquamarine; */
+}

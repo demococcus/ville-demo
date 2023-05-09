@@ -1,0 +1,41 @@
+<h2 class="page-title">Période</h2>
+
+<p class="mt-4 mb-4 text-primary">Work in progress!</p>
+
+
+
+
+<form [formGroup]="formGroup">
+  <div class="mb-3"> 
+    
+    <div class="row">
+      <div class="col">
+        <app-date-period-picker 
+          labelFrom="Début" 
+          labelTo="Fin" 
+          mask="0000-M0-d0"
+          placeholder="AAAA-MM-JJ" 
+          [controlFrom]="formGroup.get('periodStart')"
+          [controlTo]="formGroup.get('periodEnd')"
+        ></app-date-period-picker>        
+      </div>      
+    </div>
+
+  </div>
+</form>
+
+
+<hr class="mt-4 mb-4">
+
+<div class="mb-4">   
+  <button type="button" class="btn btn-outline-primary me-3" (click)="onPrevClicked()">Précédent</button>
+  <button type="button" class="btn btn-primary me-3" [disabled]="formGroup.invalid" (click)="onNextClicked()">Suivant</button>
+</div>
+
+
+<!-- <div class="mt-5">
+  <div>Form contents: {{ formGroup.value | json }}</div>
+  <div>Form is valid: {{ formGroup.valid  }}</div>
+  <div>Errors about periodStart: {{ formGroup.controls.periodStart.errors | json  }}</div>
+</div>
+ -->
