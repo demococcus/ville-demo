@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, Input } from '@angular/core';
 import { Map, NavigationControl, MapboxEvent } from 'mapbox-gl';
 import mapboxgl from 'mapbox-gl';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
@@ -21,6 +21,8 @@ export interface DrawFeature {
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  @Input() editMode: boolean = false;
 
   map: Map | undefined;
   mapboxDraw: MapboxDraw = new MapboxDraw({
@@ -54,7 +56,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
 
-    // use the centroid of the map as center for the map
+    // use the centroid of the polygon as center for the map
     const existingCentroid = this.permitForm.value.geometry.centroid;
     const mapCenter: [number, number] = existingCentroid ? existingCentroid : [-73.572545, 45.496200]
     
@@ -75,20 +77,62 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.map.addControl(new NavigationControl());
     this.map.addControl(new mapboxgl.GeolocateControl());
     
-    this.map.addControl(this.mapboxDraw, 'top-left');
-    this.map.on('draw.create', this.updateArea());
-    this.map.on('draw.delete', this.updateArea());
-    this.map.on('draw.update', this.updateArea());
+       
+    if (this.editMode) {
 
-    this.map.on('load', (ev: MapboxEvent) => {
+      this.map.addControl(this.mapboxDraw, 'top-left'); 
+      this.map.on('draw.create', this.updateArea());
+      this.map.on('draw.delete', this.updateArea());
+      this.map.on('draw.update', this.updateArea());
+  
+      this.map.on('load', (ev: MapboxEvent) => {
 
-      // add the polygon
       const existingGeom = this.permitForm.value.geometry.geom;
-      if (existingGeom) {
-        this.mapboxDraw.add(existingGeom);
-      }; 
+ 
+        // add the polygon
+        if (existingGeom) {
+          this.mapboxDraw.add(existingGeom);
+        }; 
+  
+      });
+    } else {
 
-    });
+
+      this.map.on('load', (ev: MapboxEvent) => {
+
+        const existingGeom = this.permitForm.value.geometry.geom;
+ 
+        // add the polygon
+        this.map.addSource('occupationSource', {
+          'type': 'geojson',
+          'data': existingGeom
+        });
+
+        this.map.addLayer({
+          'id': 'occupationFill',
+          'type': 'fill',
+          'source': 'occupationSource',
+          'layout': {},
+          'paint': {
+          'fill-color': '#0080ff', // blue color fill
+          'fill-opacity': 0.5
+          }
+        });
+        
+        this.map.addLayer({
+          'id': 'occupationOutline',
+          'type': 'line',
+          'source': 'occupationSource',
+          'layout': {},
+          'paint': {
+          'line-color': '#000',
+          'line-width': 1
+          }
+          });
+
+
+      });     
+    }
   }
 
 

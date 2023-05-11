@@ -4,18 +4,23 @@
   <div class="map" #map></div>
 </div>
 
-<div *ngIf="permitForm.get('geometry.geom').value; else drawPrompt" 
-  class="alert alert-success" role="alert">
-  <i class="bi bi-check-circle-fill me-2"></i> Zone d'occupation
-</div>
+<ng-container *ngIf="editMode" >
 
-
-<ng-template #drawPrompt>
-  <div     
-    class="alert alert-warning" role="alert">
-    <i class="bi bi-exclamation-circle-fill me-2"></i> Veuillez dessiner la zone d'occupation sur la carte
+  <div *ngIf="permitForm.get('geometry.geom').value; else drawPrompt" 
+    class="alert alert-success" role="alert">
+    <i class="bi bi-check-circle-fill me-2"></i> Zone d'occupation
   </div>
-</ng-template>
+  
+  
+  <ng-template #drawPrompt>
+    <div     
+      class="alert alert-warning" role="alert">
+      <i class="bi bi-exclamation-circle-fill me-2"></i> Veuillez dessiner la zone d'occupation sur la carte
+    </div>
+  </ng-template>
+
+</ng-container>
+
 
 <!-- <div class="mt-5">
   <div>Form contents: {{ permitForm.value | json }}</div>
