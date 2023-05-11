@@ -28,7 +28,7 @@
 <p class="my-1" *ngIf="getFieldValue('company.certificateNumber')">
   Numéro de certificate : {{ getFieldValue('company.certificateNumber')  | certificate }}</p> 
 
-<p class="my-1" *ngIf="getFieldValue('contact.firstName')">"
+<p class="my-1" *ngIf="getFieldValue('contact.firstName')">
   Prénom : {{ getFieldValue('contact.firstName') }}</p> 
 
 <p class="my-1" *ngIf="getFieldValue('contact.lastName')">
@@ -37,7 +37,7 @@
 <p class="my-1" *ngIf="getFieldValue('contact.phone')">
   Téléphone : {{ getFieldValue('contact.phone') | phone }}</p> 
 
-<p class="my-1" *ngIf="getFieldValue('contact.email')">"
+<p class="my-1" *ngIf="getFieldValue('contact.email')">
   Courriel : {{ getFieldValue('contact.email') }}</p> 
   
 <p class="my-1">Date de début : {{ getFieldValue('duration.periodStart') | dateM }}</p> 
